@@ -243,10 +243,7 @@ function handleDefenders(){
                 i--;
                 enemies[j].movement = enemies[j].speed;
             }
-            //attempt nº1
-        /*  if (enemies[j] && enemies[j].speed === 0){
-                enemies[j].movement = enemies[j].speed;
-            } */
+
 
         }
     }
@@ -420,12 +417,8 @@ function handleEnemies(){
             enemies.splice(i, 1);
             i--;
             //console.log(enemyPositions);
-            // attempt n2
-            for (let j = 0; j < enemies.length; j++){
-                if (defenders[i] && collision(defenders[i], enemies[j])){
-                    enemies[j].movement = 0;
-                }}
-            //
+
+
         }
     }
     //spawn enemies
@@ -504,14 +497,14 @@ canvas.addEventListener('click', function(){
     for (let i = 0; i < defenders.length; i++){
         if (defenders[i].x === gridPositionX && defenders[i].y === gridPositionY)return;
     }
-    let defenderCost = 100;
+    let defenderCost 
     // alternative pricing
     if (chosenDefender === 1){
-        floatingMessages.push(new floatingMessage('-' + defenderCost, card1.x, 80, 30, 'gold'))
         defenderCost = 100;
+        floatingMessages.push(new floatingMessage('-' + defenderCost, card1.x, 80, 30, 'gold'))
     } else if (chosenDefender === 2){
-        floatingMessages.push(new floatingMessage('-' + defenderCost, card2.x, 80, 30, 'gold'))
         defenderCost = 120;
+        floatingMessages.push(new floatingMessage('-' + defenderCost, card2.x, 80, 30, 'gold'))
     }
     if (numberOfResources >= defenderCost){
         defenders.push(new Defender(gridPositionX, gridPositionY));
