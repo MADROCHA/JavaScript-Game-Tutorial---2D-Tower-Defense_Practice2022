@@ -243,6 +243,11 @@ function handleDefenders(){
                 i--;
                 enemies[j].movement = enemies[j].speed;
             }
+            //attempt nº1
+        /*  if (enemies[j] && enemies[j].speed === 0){
+                enemies[j].movement = enemies[j].speed;
+            } */
+
         }
     }
 }
@@ -415,6 +420,12 @@ function handleEnemies(){
             enemies.splice(i, 1);
             i--;
             //console.log(enemyPositions);
+            // attempt n2
+            for (let j = 0; j < enemies.length; j++){
+                if (defenders[i] && collision(defenders[i], enemies[j])){
+                    enemies[j].movement = 0;
+                }}
+            //
         }
     }
     //spawn enemies
