@@ -7,7 +7,7 @@ canvas.height = 600;
 const cellSize = 100;
 const cellGap = 3;
 let numberOfResources = 300;
-let enemiesInterval = 400;
+let enemiesInterval = 200;
 let frame = 0;
 let gameOver = false;
 let score = 0;
@@ -235,7 +235,7 @@ function handleDefenders(){
                 } else if (enemies[j].enemyType === enemy2){
                     //part1B
                     defenders[i].health -= 0.1;
-
+                    
                 }
             }
             if (defenders[i] && defenders[i].health <= 0){
@@ -243,10 +243,17 @@ function handleDefenders(){
                 i--;
                 enemies[j].movement = enemies[j].speed;
             }
-
-
+            
+            
+        }
+        //3rd attempt fixes
+        for (let j = 0; j < enemies.length; j++){
+        if (!defenders[i] && enemies[j] && collision(!defenders[i], enemies[j])){
+            enemies[j].movement = enemies[j].speed;
+            }
         }
     }
+    console.log(enemies)
 }
 const card1 = {
     x:320,
@@ -417,9 +424,16 @@ function handleEnemies(){
             enemies.splice(i, 1);
             i--;
             //console.log(enemyPositions);
-
-
-        }
+            
+        } 
+        //   
+        /* for(let i = 0; i < enemies.length; i++){
+            if (enemies[i].movement <= 0){
+                
+                enemies[i].movement = enemies[i].speed ;
+            }
+        } */
+        //
     }
     //spawn enemies
     if (frame % enemiesInterval === 0 && score < winningScore){
@@ -497,7 +511,7 @@ canvas.addEventListener('click', function(){
     for (let i = 0; i < defenders.length; i++){
         if (defenders[i].x === gridPositionX && defenders[i].y === gridPositionY)return;
     }
-    let defenderCost 
+    let defenderCost; 
     // alternative pricing
     if (chosenDefender === 1){
         defenderCost = 100;
